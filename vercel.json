@@ -1,5 +1,9 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/ads.txt", "destination": "/ads.txt" },
+    { "source": "/robots.txt", "destination": "/robots.txt" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
+    { "source": "/favicon.svg", "destination": "/favicon.svg" },
+    { "source": "/((?!assets/).*)", "destination": "/index.html" }
   ]
 }
