@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://novashield-vpn.com/sitemap.xml
+Sitemap: https://novasheild-vpn.vercel.app/sitemap.xml
