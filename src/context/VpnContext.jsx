@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useCallback, useRef, useEffect } from 'react';
+import { setupNative, showVpnNotification, hideVpnNotification } from '../utils/nativeNotification';
 
 const VpnContext = createContext(null);
 
@@ -66,6 +67,7 @@ export function VpnProvider({ children }) {
   }, []);
 
   useEffect(() => {
+    setupNative();
     return () => {
       stopTimer();
       stopSpeeds();
@@ -82,10 +84,11 @@ export function VpnProvider({ children }) {
         simulateSpeeds();
         setDownloadSpeed(Math.floor(Math.random() * 60) + 40);
         setUploadSpeed(Math.floor(Math.random() * 30) + 15);
+        showVpnNotification(selectedServer.city);
         resolve();
       }, 1500);
     });
-  }, [startTimer, simulateSpeeds]);
+  }, [startTimer, simulateSpeeds, selectedServer]);
 
   const disconnect = useCallback(() => {
     setIsConnecting(true);
@@ -98,6 +101,7 @@ export function VpnProvider({ children }) {
         setDownloadSpeed(0);
         setUploadSpeed(0);
         setConnectionTime(0);
+        hideVpnNotification();
         resolve();
       }, 800);
     });
